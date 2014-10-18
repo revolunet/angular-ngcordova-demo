@@ -1,6 +1,11 @@
 html, body {
     margin: 0;
     padding:0;
+    background-color:white;
+}
+* {
+    font-family: Trebuchet Ms, Verdana, Arial;
+    color:#333;
 }
 .part-3 {
     box-sizing: border-box;

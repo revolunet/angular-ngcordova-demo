@@ -1,52 +1,31 @@
 [{
   "id": 1,
-  "displayName": "toto"
+  "displayName": "Miško Hevery",
+  "photos": [{
+      "value": "mocks/img/misko.jpg"
+    }]
 },{
   "id": 2,
-  "displayName": "toto"
+  "displayName": "Igor Minar",
+  "photos": [{
+      "value": "mocks/img/igor.jpg"
+    }]
 },{
   "id": 3,
-  "displayName": "toto"
+  "displayName": "Brian Ford",
+  "photos": [{
+      "value": "mocks/img/brian.jpg"
+    }]
 },{
   "id": 4,
-  "displayName": "toto"
+  "displayName": "Douglas Duteil",
+  "photos": [{
+      "value": "mocks/img/douglas.jpg"
+    }]
 },{
   "id": 5,
-  "displayName": "toto"
-},{
-  "id": 6,
-  "displayName": "toto"
-},{
-  "id": 7,
-  "displayName": "toto"
-},{
-  "id": 8,
-  "displayName": "toto"
-},{
-  "id": 9,
-  "displayName": "toto"
-},{
-  "id": 10,
-  "displayName": "toto"
-},{
-  "id": 11,
-  "displayName": "toto"
-},{
-  "id": 12,
-  "displayName": "toto"
-},{
-  "id": 13,
-  "displayName": "toto"
-},{
-  "id": 14,
-  "displayName": "toto"
-},{
-  "id": 15,
-  "displayName": "toto"
-},{
-  "id": 16,
-  "displayName": "toto"
-},{
-  "id": 17,
-  "displayName": "toto"
+  "displayName": "Pascal Precht",
+  "photos": [{
+      "value": "mocks/img/pascal.jpg"
+    }]
 }]
