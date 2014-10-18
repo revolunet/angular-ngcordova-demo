@@ -1,0 +1,58 @@
+html, body {
+    margin: 0;
+    padding:0;
+}
+.part-3 {
+    box-sizing: border-box;
+    display: inline-block;
+    border:1px solid white;
+    width:33.33%;
+    height:33.33%;
+    position:relative;
+}
+.part-4 {
+    box-sizing: border-box;
+    display: inline-block;
+    border:1px solid #333;
+    width:25%;
+    height:25%;
+    position:relative;
+}
+ul[rn-carousel] {
+    margin:0;
+    width:100%;
+    height:100%;
+}
+.thumb {
+    width:100%;
+    height:100%;
+    position:absolute;
+    top:0;
+    left:0;
+  
+    background-position: center center;
+    background-size: cover;
+    transform: rotateY(0deg);
+    backface-visibility:hidden;
+     -webkit-transition: all 0.2s ease-in;
+}
+.thumb .bg {
+    width:100%;
+    height:100%;
+    background-position: center center;
+    background-size: cover;
+}
+.thumb.ng-hide {
+    transform: rotateY(180deg);
+}
+.thumb.ng-hide-active {
+    transform: rotateY(-180deg);
+}
+.thumb.ng-show-add {
+    transform: rotateY(0deg);
+}
+
+.loader {
+    margin-top:30%;
+    text-align:center;
+}
