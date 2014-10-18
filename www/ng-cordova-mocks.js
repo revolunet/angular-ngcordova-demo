@@ -1,0 +1,1 @@
+../../ng-cordova/dist/ng-cordova-mocks.js
