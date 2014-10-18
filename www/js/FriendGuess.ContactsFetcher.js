@@ -63,42 +63,38 @@ angular.module('FriendGuess.ContactsFetcher', [
     };
 })
 
-.service('getFriendsTiles', function($q, $filter, ContactsFinder, ImageSplitter) {
-    // return a list of tiles we shuffled pictures and associated contact info
+.service('getFriendsCells', function($q, $filter, ContactsFinder, ImageSplitter) {
+    // return a list of cells we shuffled pictures and associated contact info
     return function(nbFriends, byLine) {
 
         return ContactsFinder(nbFriends).then(function(contacts) {
 
             var validContacts = {};
 
-            //console.log('getFriendsTiles contacts', contacts);
-
             return $q.all(contacts.map(function(contact) {
                 // split images for each contact
                 validContacts[contact.id] = contact;
-                return ImageSplitter(contact.photo, byLine).then(function(tiles) {
-                    contact.tiles = tiles;
+                return ImageSplitter(contact.photo, byLine).then(function(cells) {
+                    contact.cells = cells;
                     return contact;
                 });
             })).then(function(contacts) {
                 // arrange image parts by cell
-                var parts = [];
+                var cells = [];
                 for (i = 0; i < byLine * byLine; i++) {
-                    parts[i] = [];
+                    cells[i] = [];
                 }
-                for (i = 0; i < parts.length; i++) {
+                for (i = 0; i < cells.length; i++) {
                     for (j = 0; j < contacts.length; j++) {
-                        parts[i].push({
-                            photo: contacts[j].tiles[i],
+                        cells[i].push({
+                            photo: contacts[j].cells[i],
                             contact: contacts[j]
                         });
                     }
                 }
-                return parts;
-            }).then(function(parts) {
                 return {
                     contacts: validContacts,
-                    parts: parts.map($filter('shuffle'))
+                    cells: cells.map($filter('shuffle'))
                 };
             });
         });

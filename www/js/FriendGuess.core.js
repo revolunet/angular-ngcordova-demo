@@ -12,7 +12,7 @@ angular.module('FriendGuess.core', [
     contacts: 5
 })
 
-.controller('FriendGuessCtrl', function($scope, $timeout, $window, $http, $filter, getFriendsTiles, FriendGuessConfig) {
+.controller('FriendGuessCtrl', function($scope, $timeout, $window, $http, $filter, getFriendsCells, FriendGuessConfig) {
     var nbPictures = FriendGuessConfig.contacts,
         byLine = FriendGuessConfig.cellsByLine,
         validContacts,
@@ -20,25 +20,14 @@ angular.module('FriendGuess.core', [
 
     $scope.byLine = byLine;
 
-    Array.prototype.AllValuesSame = function(){
-        if(this.length > 0) {
-            for(var i = 1; i < this.length; i++)
-            {
-                if(this[i] !== this[0])
-                    return false;
-            }
-        }
-        return true;
-    };
-
     function checkStatus() {
         // check if tiles completed
         var ids = [];
         var same = true;
         // compute selected tiles contactIds
         for (i = 0; i < byLine * byLine; i++) {
-            var scope = angular.element(document.querySelector('#tile-' + i)).scope();
-            ids.push(scope.part[scope.index].contact.id);
+            var scope = angular.element(document.querySelector('#cell-' + i)).scope();
+            ids.push(scope.cell[scope.index].contact.id);
         }
         // display message + restart on complete
         if (ids.AllValuesSame()) {
@@ -67,11 +56,11 @@ angular.module('FriendGuess.core', [
 
     function refreshContacts() {
         // refresh contacts and grid
-        $scope.parts = [];
+        $scope.cells = [];
 
-        getFriendsTiles(nbPictures, byLine).then(function(result) {
+        getFriendsCells(nbPictures, byLine).then(function(result) {
             validContacts = result.contacts;
-            $scope.parts = result.parts;
+            $scope.cells = result.cells;
         });
 
     }

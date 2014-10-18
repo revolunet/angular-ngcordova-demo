@@ -18,21 +18,21 @@
     <body>
         <div ng-controller="FriendGuessCtrl">
 
-            <div ng-if="parts.length == 0" class="loader">
+            <div ng-if="cells.length == 0" class="loader">
                 Fetching contacts...
                 <div class="uil-ring-css" style="-webkit-transform:scale(0.6)">
                   <div></div>
                 </div>
             </div>
 
-            <div ng-repeat="part in parts" class="part-{{ byLine }}" >
-                <span ng-init="index=0" id="tile-{{ $index }}">
+            <div ng-repeat="cell in cells" class="cell-{{ byLine }}" >
+                <span ng-init="index=0" id="cell-{{ $index }}">
                     <div
-                        ng-repeat="contact in part"
+                        ng-repeat="contact in cell"
                         class="thumb"
                         ng-style="{ 'background-image': 'url(' + contact.photo + ')' }"
                         ng-show="$parent.index==$index"
-                        ng-click="$parent.index=increment(index, part.length)">
+                        ng-click="$parent.index=increment(index, cell.length)">
                     </div>
                 </span>
             </div>

@@ -1,4 +1,15 @@
 
+Array.prototype.AllValuesSame = function(){
+    if(this.length > 0) {
+        for(var i = 1; i < this.length; i++)
+        {
+            if(this[i] !== this[0])
+                return false;
+        }
+    }
+    return true;
+};
+
 var dependencies = [
     'ngCordova',
     'ngAnimate',
@@ -10,9 +21,6 @@ if (!window.cordova) {
 }
 
 angular.module('FriendGuess', dependencies);
-
-
-
 
 if (!window.cordova) {
     angular.bootstrap(document, ['FriendGuess']);
