@@ -2,10 +2,7 @@
 <head>
 <script src="./bower_components/angular/angular.js"></script>
 <script src="./bower_components/angular-animate/angular-animate.js"></script>
-<!--
-<script src="./bower_components/angular-touch/angular-touch.js"></script>
-<script src="./bower_components/angular-carousel/dist/angular-carousel.js"></script>
--->
+<script src="./bower_components/angular-route/angular-route.js"></script>
 <script src="./bower_components/ngCordova/dist/ng-cordova.js"></script>
 <script src="./ng-cordova-mocks.js"></script>
 <script src="./cordova.js"></script>
@@ -65,18 +62,21 @@ ul[rn-carousel] {
     transform: rotateY(0deg);
 }
 
+.loader {
+    margin-top:30%;
+    text-align:center;
+}
+
 
 </style>
 </head>
 <body>
 <div ng-controller="TestCtrl">
+
+    <div ng-if="parts.length == 0" class="loader">
+        Fetching contacts...
+    </div>
     <div ng-repeat="part in parts" class="part-{{ byLine }}" >
-<!--         <ul rn-carousel>
-            <li class="thumb" ng-repeat="contact in part" >
-                <div class="bg" ng-style="{ 'background-image': 'url(' + contact.photo + ')' }"></div>
-            </li>
-        </ul>
-    -->
         <span ng-init="index=0" id="tile-{{ $index }}">
             <div
                 ng-repeat="contact in part"
@@ -86,466 +86,20 @@ ul[rn-carousel] {
                 ng-click="$parent.index=increment(index, part.length)">
             </div>
         </span>
-
- 
     </div>
 </div>
 </boy>
 <script>
 
-    angular.module('ngCordovaBrowserMocks', ['ngCordovaMocks', 'ngAnimate'])
+    angular.module('ngCordovaBrowserMocks', ['ngCordovaMocks'])
 
-    .value('ContactsMocks', [{
-        "id": "30",
-        "rawId": "24",
-        "displayName": "Julien SAADOUN",
-        "name": {
-          "familyName": "SAADOUN",
-          "formatted": "Julien SAADOUN",
-          "givenName": "Julien"
-        },
-        "nickname": null,
-        "phoneNumbers": null,
-        "emails": [
-          {
-            "type": "other",
-            "value": "jsaadoun@green-si.com",
-            "id": "79",
-            "pref": false
-          }
-        ],
-        "addresses": null,
-        "ims": null,
-        "organizations": null,
-        "birthday": "this is a test",
-        "note": "",
-        // "photos": [
-        // ],
-        "categories": null,
-        "urls": null
-      },
-      {
-        "id": "159",
-        "rawId": "169",
-        "displayName": "Julien Saadoun",
-        "name": {
-          "familyName": "Saadoun",
-          "formatted": "Julien Saadoun",
-          "givenName": "Julien"
-        },
-        "nickname": null,
-        "phoneNumbers": null,
-        "emails": [
-          {
-            "type": "other",
-            "value": "saadounj@free.fr",
-            "id": "1021",
-            "pref": false
-          }
-        ],
-        "addresses": null,
-        "ims": null,
-        "organizations": null,
-        "birthday": null,
-        "note": "",
-        // "photos": [
-        // ],
-        "categories": null,
-        "urls": null
-      },
-      {
-        "id": "194",
-        "rawId": "183",
-        "displayName": null,
-        "name": {
-          "formatted": ""
-        },
-        "nickname": null,
-        "phoneNumbers": null,
-        "emails": [
-          {
-            "type": "other",
-            "value": "Julien.delisposti@storetech.fr",
-            "id": "1107",
-            "pref": false
-          }
-        ],
-        "addresses": null,
-        "ims": null,
-        "organizations": null,
-        "birthday": null,
-        "note": "",
-        // "photos": [
-        // ],
-        "categories": null,
-        "urls": null
-      },
-      {
-        "id": "233",
-        "rawId": "223",
-        "displayName": "Julien LOPEZ",
-        "name": {
-          "familyName": "LOPEZ",
-          "formatted": "Julien LOPEZ",
-          "givenName": "Julien"
-        },
-        "nickname": null,
-        "phoneNumbers": null,
-        "emails": [
-          {
-            "type": "other",
-            "value": "j.lopez@sauramps.fr",
-            "id": "1368",
-            "pref": false
-          }
-        ],
-        "addresses": null,
-        "ims": null,
-        "organizations": null,
-        "birthday": null,
-        "note": "",
-        // "photos": [
-        // ],
-        "categories": null,
-        "urls": null
-      },
-      {
-        "id": "428",
-        "rawId": "431",
-        "displayName": null,
-        "name": {
-          "formatted": ""
-        },
-        "nickname": null,
-        "phoneNumbers": null,
-        "emails": [
-          {
-            "type": "other",
-            "value": "julien.jay@m6.fr",
-            "id": "2721",
-            "pref": false
-          }
-        ],
-        "addresses": null,
-        "ims": null,
-        "organizations": null,
-        "birthday": null,
-        "note": "",
-        // "photos": [
-        // ],
-        "categories": null,
-        "urls": null
-      },
-      {
-        "id": "496",
-        "rawId": "482",
-        "displayName": "Julien Chouard",
-        "name": {
-          "familyName": "Chouard",
-          "formatted": "Julien Chouard",
-          "givenName": "Julien"
-        },
-        "nickname": null,
-        "phoneNumbers": null,
-        "emails": [
-          {
-            "type": "other",
-            "value": "julien.chouard@hyperassur.com",
-            "id": "3048",
-            "pref": false
-          }
-        ],
-        "addresses": null,
-        "ims": null,
-        "organizations": null,
-        "birthday": null,
-        "note": "",
-        // "photos": [
-        // ],
-        "categories": null,
-        "urls": null
-      },
-      {
-        "id": "528",
-        "rawId": "533",
-        "displayName": "julien fillaud",
-        "name": {
-          "familyName": "fillaud",
-          "formatted": "julien fillaud",
-          "givenName": "julien"
-        },
-        "nickname": null,
-        "phoneNumbers": null,
-        "emails": [
-          {
-            "type": "other",
-            "value": "jfillaud@sante-conseil.fr",
-            "id": "3375",
-            "pref": false
-          }
-        ],
-        "addresses": null,
-        "ims": null,
-        "organizations": null,
-        "birthday": null,
-        "note": "",
-        // "photos": [
-        // ],
-        "categories": null,
-        "urls": null
-      },
-      {
-        "id": "738",
-        "rawId": "746",
-        "displayName": "Julien Bouquillon",
-        "name": {
-          "familyName": "Bouquillon",
-          "formatted": "Julien Bouquillon",
-          "givenName": "Julien"
-        },
-        "nickname": null,
-        "phoneNumbers": null,
-        "emails": [
-          {
-            "type": "other",
-            "value": "julien@santeo.net",
-            "id": "4754",
-            "pref": false
-          }
-        ],
-        "addresses": null,
-        "ims": null,
-        "organizations": null,
-        "birthday": null,
-        "note": "",
-        // "photos": [
-        //   {
-        //     "value": "content://com.android.contacts/contacts/738/photo",
-        //     "type": "url",
-        //     "id": "4749",
-        //     "pref": false
-        //   }
-        // ],
-        "categories": null,
-        "urls": null
-      },
-      {
-        "id": "758",
-        "rawId": "762",
-        "displayName": "Julien Bouquillon",
-        "name": {
-          "familyName": "Bouquillon",
-          "formatted": "Julien Bouquillon",
-          "givenName": "Julien"
-        },
-        "nickname": null,
-        "phoneNumbers": null,
-        "emails": [
-          {
-            "type": "other",
-            "value": "admin@santeo.net",
-            "id": "4861",
-            "pref": false
-          }
-        ],
-        "addresses": null,
-        "ims": null,
-        "organizations": null,
-        "birthday": null,
-        "note": "",
-        // "photos": [
-        //   {
-        //     "value": "content://com.android.contacts/contacts/758/photo",
-        //     "type": "url",
-        //     "id": "4856",
-        //     "pref": false
-        //   }
-        // ],
-        "categories": null,
-        "urls": null
-      },
-      {
-        "id": "812",
-        "rawId": "815",
-        "displayName": "julien@ikado.fr",
-        "name": {
-          "formatted": "julien@ikado.fr ",
-          "givenName": "julien@ikado.fr"
-        },
-        "nickname": null,
-        "phoneNumbers": null,
-        "emails": [
-          {
-            "type": "other",
-            "value": "julien@ikado.fr",
-            "id": "5213",
-            "pref": false
-          }
-        ],
-        "addresses": null,
-        "ims": null,
-        "organizations": null,
-        "birthday": null,
-        "note": "",
-        // "photos": [
-        //   {
-        //     "value": "content://com.android.contacts/contacts/812/photo",
-        //     "type": "url",
-        //     "id": "5208",
-        //     "pref": false
-        //   }
-        // ],
-        "categories": null,
-        "urls": null
-      },
-      {
-        "id": "820",
-        "rawId": "822",
-        "displayName": "Julien De Luca",
-        "name": {
-          "familyName": "De Luca",
-          "formatted": "Julien De Luca",
-          "givenName": "Julien"
-        },
-        "nickname": null,
-        "phoneNumbers": null,
-        "emails": [
-          {
-            "type": "other",
-            "value": "julien@likwid.fr",
-            "id": "5260",
-            "pref": false
-          }
-        ],
-        "addresses": null,
-        "ims": null,
-        "organizations": null,
-        "birthday": null,
-        "note": "",
-        "photos": [
-          // {
-          //   "value": "content://com.android.contacts/contacts/820/photo",
-          //   "type": "url",
-          //   "id": "5255",
-          //   "pref": false
-          // }
-        ],
-        "categories": null,
-        "urls": null
-      },
-      {
-        "id": "821",
-        "rawId": "817",
-        "displayName": "Julien Bouquillon",
-        "name": {
-          "familyName": "Bouquillon",
-          "formatted": "Julien Bouquillon",
-          "givenName": "Julien"
-        },
-        "nickname": null,
-        "phoneNumbers": null,
-        "emails": [
-          {
-            "type": "other",
-            "value": "julien@revolunet.com",
-            "id": "5226",
-            "pref": false
-          }
-        ],
-        "addresses": null,
-        "ims": null,
-        "organizations": null,
-        "birthday": null,
-        "note": "",
-        // "photos": [
-        //   {
-        //     "value": "content://com.android.contacts/contacts/821/photo",
-        //     "type": "url",
-        //     "id": "5221",
-        //     "pref": false
-        //   }
-        // ],
-        "categories": null,
-        "urls": null
-      },
-      {
-        "id": "898",
-        "rawId": "914",
-        "displayName": "De Luca Julien",
-        "name": {
-          "middleName": "Luca",
-          "familyName": "Julien",
-          "formatted": "De Luca Julien",
-          "givenName": "De"
-        },
-        "nickname": null,
-        "phoneNumbers": null,
-        "emails": [
-          {
-            "type": "other",
-            "value": "jide.fr@gmail.com",
-            "id": "5864",
-            "pref": false
-          }
-        ],
-        "addresses": null,
-        "ims": null,
-        "organizations": null,
-        "birthday": null,
-        "note": "",
-        // "photos": [
-        //   {
-        //     "value": "content://com.android.contacts/contacts/898/photo",
-        //     "type": "url",
-        //     "id": "5859",
-        //     "pref": false
-        //   }
-        // ],
-        "categories": null,
-        "urls": null
-      },
-      {
-        "id": "901",
-        "rawId": "913",
-        "displayName": "Julien Bouquillon",
-        "name": {
-          "familyName": "Bouquillon",
-          "formatted": "Julien Bouquillon",
-          "givenName": "Julien"
-        },
-        "nickname": null,
-        "phoneNumbers": null,
-        "emails": [
-          {
-            "type": "other",
-            "value": "admin@bouquillon.com",
-            "id": "5857",
-            "pref": false
-          }
-        ],
-        "addresses": null,
-        "ims": null,
-        "organizations": null,
-        "birthday": null,
-        "note": "",
-        // "photos": [
-        //   {
-        //     "value": "content://com.android.contacts/contacts/901/photo",
-        //     "type": "url",
-        //     "id": "5852",
-        //     "pref": false
-        //   }
-        // ],
-        "categories": null,
-        "urls": null
-      }
-    ])
-
-    .run(function($window, $q, $cordovaContacts, ContactsMocks) {
-        $cordovaContacts.contacts = ContactsMocks;
+    .run(function($rootScope, $http, $cordovaContacts) {
+        $rootScope.mocksLoaded = $http.get('mocks-contacts.json').then(function(response) {
+            $cordovaContacts.contacts = response.data;
+        });
     });
 
-    var dependencies = ['ngCordova'];
+    var dependencies = ['ngCordova', 'ngRoute', 'ngAnimate' ];
 
     if (!window.cordova) {
         dependencies.push('ngCordovaBrowserMocks');
@@ -666,13 +220,13 @@ ul[rn-carousel] {
     .filter('shuffle', function() {
         return function(o) {
             //+ Jonas Raoni Soares Silva
-        //@ http://jsfromhell.com/array/shuffle [v1.0]
+            //@ http://jsfromhell.com/array/shuffle [v1.0]
             for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
             return o;
         }
     })
 
-    .controller('TestCtrl', function($scope, $q, $timeout, $window, $filter, ContactsFinder, ImageSplitter) {
+    .controller('TestCtrl', function($scope, $q, $timeout, $window, $http, $filter, ContactsFinder, ImageSplitter) {
         var nbPictures = 5,
             byLine = 3,
             validContacts,
@@ -705,7 +259,7 @@ ul[rn-carousel] {
                 $timeout(function() {
                     var sure = $window.confirm('Call ' + contact.displayName + ' now ?');
                     if (sure) {
-                        $window.open('tel://' + contact.)
+                        // dummy    
                     }
                     refreshContacts();
                 }, 500);
@@ -764,8 +318,15 @@ ul[rn-carousel] {
             });
         }
 
-        refreshContacts();
-    })
+        if ($scope.mocksLoaded!==undefined) {
+            $scope.mocksLoaded.then(function() {
+                refreshContacts();
+            })
+        } else {
+            refreshContacts();
+        }
+        
+    });
 
     if (!window.cordova) {
         angular.bootstrap(document, ['Test']);
