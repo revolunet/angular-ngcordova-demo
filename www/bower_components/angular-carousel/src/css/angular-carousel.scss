@@ -1,8 +1,3 @@
-
-body {
-  background: #ccc;
-}
-
 input[type=range] {
   width:300px;
 }
@@ -13,9 +8,9 @@ ul[rn-carousel] {
   white-space: nowrap;
   position: relative;
   perspective:1000px;
-  -ms-touch-action: none;
-  touch-action: none;
-  li {
+  -ms-touch-action: pan-y;
+  touch-action: pan-y;
+  > li {
     color:black;
     backface-visibility: hidden;
     overflow: visible;
@@ -34,7 +29,7 @@ ul[rn-carousel] {
 }
 
 /* prevent flickering when moving buffer */
-ul[rn-carousel-buffered] li {
+ul[rn-carousel-buffered] > li {
   display:none;
 }
 

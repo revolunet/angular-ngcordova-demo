@@ -71,7 +71,7 @@ angular.module('FriendGuess.ContactsFetcher', [
 
             var validContacts = {};
 
-            console.log('getFriendsTiles contacts', contacts);
+            //console.log('getFriendsTiles contacts', contacts);
 
             return $q.all(contacts.map(function(contact) {
                 // split images for each contact

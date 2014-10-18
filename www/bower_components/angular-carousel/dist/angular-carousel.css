@@ -1,6 +1,3 @@
-body {
-  background: #ccc; }
-
 input[type=range] {
   width: 300px; }
 
@@ -12,9 +9,9 @@ ul[rn-carousel] {
   -webkit-perspective: 1000px;
   -ms-perspective: 1000px;
   perspective: 1000px;
-  -ms-touch-action: none;
-  touch-action: none; }
-  ul[rn-carousel] li {
+  -ms-touch-action: pan-y;
+  touch-action: pan-y; }
+  ul[rn-carousel] > li {
     color: black;
     -webkit-backface-visibility: hidden;
     -ms-backface-visibility: hidden;
@@ -33,7 +30,7 @@ ul[rn-carousel] {
     display: inline-block; }
 
 /* prevent flickering when moving buffer */
-ul[rn-carousel-buffered] li {
+ul[rn-carousel-buffered] > li {
   display: none; }
 
 ul[rn-carousel-transition="hexagon"] {
