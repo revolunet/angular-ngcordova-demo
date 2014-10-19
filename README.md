@@ -5,7 +5,7 @@ A simple app ap made with :
  - cordova
  - ng-cordova
 
-The app demonstrates how to mock cordova plugins data to develop & test right in your browser.
+The app demonstrates how to mock cordova plugins data to develop & test your mobile web app right in your favorite browser.
 
 Made for @ngEurope 2014.
 
