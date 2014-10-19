@@ -9,7 +9,7 @@ angular.module('FriendGuess.core', [
 
 .value('FriendGuessConfig', {
     cellsByLine: 3,
-    contacts: 5
+    contacts: 2
 })
 
 .controller('FriendGuessCtrl', function($scope, $timeout, $window, $http, $filter, getFriendsCells, FriendGuessConfig) {
@@ -29,17 +29,9 @@ angular.module('FriendGuess.core', [
             var scope = angular.element(document.querySelector('#cell-' + i)).scope();
             ids.push(scope.cell[scope.index].contact.id);
         }
-        // display message + restart on complete
+        // display message on complete
         if (ids.AllValuesSame()) {
-            var contact = validContacts[ids[0]];
-            // wait animation end before display result
-            $timeout(function() {
-                var sure = $window.confirm('Call ' + contact.displayName + ' now ?');
-                if (sure) {
-                    // dummy    
-                }
-                refreshContacts();
-            }, 500);
+            $scope.winner = validContacts[ids[0]];
         }
     }
 
@@ -64,6 +56,8 @@ angular.module('FriendGuess.core', [
         });
 
     }
+
+    $scope.refreshContacts = refreshContacts;
 
     if ($scope.mocksLoaded!==undefined) {
         $scope.mocksLoaded.then(function() {

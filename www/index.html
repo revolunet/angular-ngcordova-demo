@@ -1,5 +1,6 @@
 <html>
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         <title>Friend Guess</title>
         <script src="./bower_components/angular/angular.js"></script>
         <script src="./bower_components/angular-animate/angular-animate.js"></script>
@@ -11,7 +12,7 @@
         <script src="./js/FriendGuess.ContactsFetcher.js"></script>
         <script src="./js/FriendGuess.core.js"></script>
         <script src="./js/FriendGuess.mocks.js"></script>
-        <link href="./bower_components/angular-carousel/dist/angular-carousel.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
         <link href="style.css" rel="stylesheet" type="text/css">
         <link href="ring.css" rel="stylesheet" type="text/css">
     </head>
@@ -35,6 +36,15 @@
                         ng-click="$parent.index=increment(index, cell.length)">
                     </div>
                 </span>
+            </div>
+
+            <div class="winner" ng-show="winner">
+                <a href="javascript://" class="close" ng-click="winner=false">close</a>
+                <h3>Yes! {{ winner.displayName }}!</h3>
+                <div class="center">
+                    <a href="tel://#" class="pure-button pure-button-primary">Call Now</a>
+                    <a ng-click="winner=false;refreshContacts()" class="pure-button button-success">Play again</a>
+                </div>
             </div>
 
         </div>
