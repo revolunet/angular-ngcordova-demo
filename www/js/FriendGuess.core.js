@@ -9,7 +9,7 @@ angular.module('FriendGuess.core', [
 
 .value('FriendGuessConfig', {
     cellsByLine: 3,
-    contacts: 2
+    contacts: 5
 })
 
 .controller('FriendGuessCtrl', function($scope, $timeout, $window, $http, $filter, getFriendsCells, FriendGuessConfig) {
