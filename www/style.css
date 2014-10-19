@@ -35,7 +35,7 @@ html, body {
     background-size: cover;
     transform: rotateY(0deg);
     backface-visibility:hidden;
-    -webkit-transition: all 0.2s ease-in;
+    transition: all 0.2s ease-in;
 }
 .thumb .bg {
     width:100%;
@@ -76,7 +76,7 @@ html, body {
     top:20%;
     z-index:100;
     backface-visibility:hidden;
-    -webkit-transition: all 0.2s ease-in;
+    transition: all 0.2s ease-in;
 }
 
 .winner.ng-hide {
