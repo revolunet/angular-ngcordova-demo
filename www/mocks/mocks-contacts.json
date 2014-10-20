@@ -5,18 +5,6 @@
       "value": "mocks/img/misko.jpg"
     }]
 },{
-  "id": 2,
-  "displayName": "Igor Minar",
-  "photos": [{
-      "value": "mocks/img/igor.jpg"
-    }]
-},{
-  "id": 3,
-  "displayName": "Brian Ford",
-  "photos": [{
-      "value": "mocks/img/brian.jpg"
-    }]
-},{
   "id": 4,
   "displayName": "Douglas Duteil",
   "photos": [{
